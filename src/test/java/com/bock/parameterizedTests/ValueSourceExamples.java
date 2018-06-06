@@ -2,8 +2,11 @@ package com.bock.parameterizedTests;
 
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,13 +41,22 @@ public class ValueSourceExamples {
     @DisplayName("longs value source")
     void longValueSource(Long l) {
         assertThrows(NumberFormatException.class,
-                () -> Integer.parseInt(l.toString()));
+                () -> Integer.parseInt(l.toString())
+        );
     }
 
     @ParameterizedTest(name = "{arguments} is even")
-    @ValueSource(ints = {1,2,3,4,5,6,7,8,9,10})
+    @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
     @DisplayName("int is even")
     void failingValueSource(int i) {
         assertEquals(0, i % 2);
+    }
+
+    @Test
+    @DisplayName("where are all my tests?")
+    void nonParameterizedTest() {
+        IntStream.range(0, 10).forEach(
+                (i) -> assertEquals(0, i % 2)
+        );
     }
 }

@@ -8,6 +8,7 @@ import java.time.format.TextStyle;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EnumSourceExamples {
 
@@ -17,6 +18,12 @@ public class EnumSourceExamples {
         String shortDay = day.getDisplayName(TextStyle.SHORT, Locale.getDefault());
 
         assertEquals(3, shortDay.length());
+    }
+
+    @ParameterizedTest(name = "{arguments} starts with T")
+    @EnumSource(value = DayOfWeek.class, names = {"TUESDAY", "THURSDAY", "SATURDAY"})
+    void tDay(DayOfWeek day) {
+        assertTrue(day.toString().startsWith("T"));
     }
 
 }

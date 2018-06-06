@@ -55,7 +55,6 @@ public class ArgumentsConverterExamples {
     @ParameterizedTest
     @CsvSource(value = {"./src/test/resources/5000 Sales Records.csv", "/NotAFile.csv", "./src/test/resources/5000 Sales Records.csv"})
     void defaultConverterFile(File f) {
-        System.out.println(f.getAbsolutePath());
         assertTrue(f.exists());
     }
 
